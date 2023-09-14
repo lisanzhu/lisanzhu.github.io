@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Li Donggua&#39;s Life</title>
+    <link>https://lisanzhu.github.io/tags/</link>
+    <description>Recent content in Tags on Li Donggua&#39;s Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34; http-equiv=&#34;Content-Security-Policy&#34; content=&#34;upgrade-insecure-requests&#34; &gt;WANG Chucheng&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34; http-equiv=&#34;Content-Security-Policy&#34; content=&#34;upgrade-insecure-requests&#34;&gt;MA Ruiqi&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Wed, 13 Sep 2023 20:07:16 +0800</lastBuildDate><atom:link href="https://lisanzhu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>服务端</title>
+      <link>https://lisanzhu.github.io/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</link>
+      <pubDate>Wed, 13 Sep 2023 20:07:16 +0800</pubDate>
+      
+      <guid>https://lisanzhu.github.io/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>缓存</title>
+      <link>https://lisanzhu.github.io/tags/%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Wed, 13 Sep 2023 20:07:16 +0800</pubDate>
+      
+      <guid>https://lisanzhu.github.io/tags/%E7%BC%93%E5%AD%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>源码分享</title>
+      <link>https://lisanzhu.github.io/tags/%E6%BA%90%E7%A0%81%E5%88%86%E4%BA%AB/</link>
+      <pubDate>Tue, 12 Sep 2023 20:03:02 +0800</pubDate>
+      
+      <guid>https://lisanzhu.github.io/tags/%E6%BA%90%E7%A0%81%E5%88%86%E4%BA%AB/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
