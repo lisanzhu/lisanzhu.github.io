@@ -1,0 +1,10 @@
+main:
+  - name: 首页
+    url: '#about'
+    weight: 1
+  - name: 技术分享
+    url: /posts/
+    weight: 2
+  - name: 旅行
+    url: /docs/
+    weight: 3

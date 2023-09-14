@@ -1,0 +1,8 @@
+github.com/FortAwesome/Font-Awesome v0.0.0-20210804190922-7d3d774145ac/go.mod h1:IUgezN/MFpCDIlFezw3L8j83oeiIuYoj28Miwr/KUYo=
+github.com/krisk/Fuse v6.6.2+incompatible/go.mod h1:3moWv8rDjwoKic9nwiPLgZjldkbdTAbtzJHCu/Vsj4A=
+wangchucheng.com/hugo-eureka v0.9.3 h1:wQnWQxMW4jy6M/FOvAay13f5OD+UXPKBtkagdS0Fjys=
+wangchucheng.com/hugo-eureka v0.9.3/go.mod h1:vz1B81+UwcYXu6uOJ3aCt4PPa5gikq3OxLlqpjBnHDY=
+wangchucheng.com/hugo-marble/search v0.1.0 h1:C2xZmTOJVCvmXmHi+dpxVzFsqm1Ahbhc6e5f0Zo8gvA=
+wangchucheng.com/hugo-marble/search v0.1.0/go.mod h1:rPC7wEHCCBmu0M/pL6M+lvgWiDoNsi/QweRbhF32WmI=
+wangchucheng.com/hugo-marble/utils v0.1.0-alpha.1 h1:xgVAtUcL6rsWPrclQogE4v9ayaLScqxodEV8OKVthS0=
+wangchucheng.com/hugo-marble/utils v0.1.0-alpha.1/go.mod h1:+KrIaZCw4A7rhu73Dx1RgzXOMXr2pAG3Bg90qz3BpGo=
