@@ -35,5 +35,14 @@ LRU LFU 实现方式 记录访问顺序，使用时间最远的数据先被移�
       <description>&lt;p&gt;从KV应用场景入手，深入leveldb源码，学习KV存储引擎&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>使用Hugo搭建一套自己的网站</title>
+      <link>https://lisanzhu.github.io/posts/hugo/</link>
+      <pubDate>Tue, 12 Sep 2023 20:03:02 +0800</pubDate>
+      
+      <guid>https://lisanzhu.github.io/posts/hugo/</guid>
+      <description>&lt;p&gt;一个用Go语言编写的静态网页生成器，能够快速搭建一个静态网站。&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

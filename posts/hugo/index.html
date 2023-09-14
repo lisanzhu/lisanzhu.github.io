@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>使用Hugo搭建一套自己的网站 | Li Donggua&#39;s Life</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="https://lisanzhu.github.io/css/eureka.min.9cec6350e37e534b0338fa9a085bf06855de3b0f2dcf857e792e5e97b07ea905d4d5513db554cbc26a9c3da622bae92d.css">
+<script defer src="https://lisanzhu.github.io/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="https://lisanzhu.github.io/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="https://lisanzhu.github.io/js/fontawesome.min.f14def4f6943de5b19b19c02e239b98c8cc6a8fe66b6828a21da7c0e9d405df8364cab68aa637c3bbe735eb7c325aa3c.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="https://lisanzhu.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://lisanzhu.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="一个用Go语言编写的静态网页生成器，能够快速搭建一个静态网站。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Posts",
+      "item":"https://lisanzhu.github.io/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"使用Hugo搭建一套自己的网站",
+      "item":"https://lisanzhu.github.io/posts/hugo/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lisanzhu.github.io/posts/hugo/"
+    },
+    "headline": "使用Hugo搭建一套自己的网站 | Li Donggua\u0027s Life","datePublished": "2023-09-12T20:03:02+08:00",
+    "dateModified": "2023-09-12T20:03:02+08:00",
+    "wordCount":  146 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "WANG Chucheng",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://lisanzhu.github.io/images/icon.png"
+        }
+        },
+    "description": "\u003cp\u003e一个用Go语言编写的静态网页生成器，能够快速搭建一个静态网站。\u003c\/p\u003e"
+}
+</script><meta property="og:title" content="使用Hugo搭建一套自己的网站 | Li Donggua&#39;s Life" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="https://lisanzhu.github.io/images/icon.png">
+
+
+<meta property="og:url" content="https://lisanzhu.github.io/posts/hugo/" />
+
+
+
+
+<meta property="og:description" content="一个用Go语言编写的静态网页生成器，能够快速搭建一个静态网站。" />
+
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="Li Donggua&#39;s Life" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2023-09-12T20:03:02&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2023-09-12T20:03:02&#43;08:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="工具" />
+
+
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">Li Donggua&#39;s Life</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">首页</a>
+            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  me-4">技术分享</a>
+            <a href="/docs/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">旅行</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">Light</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">Dark</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">Auto</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class=" bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">使用Hugo搭建一套自己的网站</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2023-09-12</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>1 min read</span>
+  </div>
+
+  
+    <div class="me-6 my-2">
+      <i class="fas fa-folder me-1"></i>
+      
+        <a href="https://lisanzhu.github.io/categories/%E5%B7%A5%E5%85%B7/" class="hover:text-eureka"
+          >工具</a
+        >
+      
+    </div>
+  
+
+  
+</div>
+
+
+  
+  
+
+  <p>一个用Go语言编写的静态网页生成器，能够快速搭建一个静态网站。</p>
+<h1 id="使用hugo搭建网站">使用Hugo搭建网站</h1>
+<h2 id="过去如何搭建网站">过去如何搭建网站</h2>
+<p>方案：使用前后端分离技术，Java SpringBoot框架提供数据，H5渲染页面。
+缺点：作为服务端研发，上手前端知识成本高，自己搭建弄出来的UI很丑。</p>
+<blockquote>
+<p>自己大学搭过的商城-前后端分离项目 也是用网课提供的代码搞的。</p>
+</blockquote>
+<h2 id="新型搭建网站方式">新型搭建网站方式</h2>
+<p>方案：使用Hugo框架搭建静态博客页面。
+Hugo是什么：一个用Go语言编写的静态网页生成器，能够快速搭建一个静态网站。被称为最受欢迎且最热门的静态网站生成器之一。</p>
+<p>优点：</p>
+<ol>
+<li>不需要对前端知识熟悉，就能够使用Hugo在几分钟内快速搭建一套美观、简洁的博客网站；预览功能便捷</li>
+<li>支持网站切换多种主题；</li>
+<li>支持Markdown语法展示；</li>
+<li>支持展示样式多、功能多，项目持续迭代维护；支持多个高级特性</li>
+</ol>
+<p>Hugo github链接：<a href="https://github.com/gohugoio/hugo">https://github.com/gohugoio/hugo</a></p>
+<p>Hugo 官方文档：<a href="https://www.gohugo.org/">https://www.gohugo.org/</a></p>
+<p>缺点：</p>
+<ol>
+<li>不支持评论等功能，是一个静态网站</li>
+</ol>
+<h2 id="样例展示">样例展示</h2>
+<p>我的博客网站：<a href="https://lisanzhu.github.io/">https://lisanzhu.github.io/</a></p>
+<p>使用主题：eureka</p>
+<p>用处：记录个人生活、技术笔记</p>
+<h2 id="详细过程">详细过程</h2>
+<h3 id="使用eureka模板快速搭建">使用Eureka模板快速搭建</h3>
+<blockquote>
+<p>Eureka 可以通过使用 Github 模板Hugo Eureka Starters:<a href="https://www.wangchucheng.com/zh/docs/hugo-eureka/getting-started/">https://www.wangchucheng.com/zh/docs/hugo-eureka/getting-started/</a>快速安装。</p>
+</blockquote>
+<p>使用此种方式时请点击页面上的Use this template按钮，并设置你的仓库信息，创建一个仓库。</p>
+<p>本地创建一个目录关联此仓库。</p>
+<p>对应项目目录
+<img src="/pic/hugo/project_dir_lvl2.png" alt="img.png"></p>
+<p>在posts目录中自定义页面，创建页面指令如下，用Markdown格式编辑页面</p>
+<pre><code class="language-shell">hugo new posts/c.md
+</code></pre>
+<p>启动服务器指令(-D 是否展示草稿版本)</p>
+<pre><code class="language-shell">hugo server -D
+</code></pre>
+<h3 id="手动安装submodule方式搭建框架">手动安装submodule方式搭建框架</h3>
+<p>环境搭建
+下载hugo框架：macos 使用homebrew一键安装hugo</p>
+<pre><code class="language-shell">brew install hugo
+</code></pre>
+<p>使用hugo指令创建项目目录，并切换到指定工作目录下</p>
+<pre><code class="language-shell">hugo new site quickstart  &amp; cd quickstart
+</code></pre>
+<p>工作目录结构如下
+<img src="/pic/hugo/submodule_dir.png" alt="img.png">
+项目目录介绍</p>
+<ul>
+<li>archetypes: 储存.md的模板文件，类似于hexo的scaffolds，该文件夹的优先级高于主题下的/archetypes文件夹</li>
+<li>config.toml: 配置文件</li>
+<li>content: 储存网站的所有内容，类似于hexo的source</li>
+<li>data: 储存数据文件供模板调用，类似于hexo的source/_data</li>
+<li>layouts: 储存.html模板，该文件夹的优先级高于主题下的/layouts文件夹</li>
+<li>static: 储存图片,css,js等静态文件，该目录下的文件会直接拷贝到/public，该文件夹的优先级高于主题下的/static文件夹</li>
+<li>themes: 储存主题</li>
+<li>public: 执行hugo命令后，储存生成的静态文件</li>
+</ul>
+<p>初始化git，从github拉取网站主题</p>
+<blockquote>
+<p>备注：此种方法属于新建项目以后，将想要的主题添加进本项目；<br>
+另外一种方法是使用主题的quick_start当做模板直接创建项目，详情见https://www.wangchucheng.com/zh/docs/hugo-eureka/getting-started/快速安装部分</p>
+</blockquote>
+<pre><code class="language-shell">git init 
+git submodule add https://github.com/wangchucheng/hugo-eureka.git themes/eureka
+</code></pre>
+<p>将下载的主题应用至本项目</p>
+<pre><code class="language-shell">echo &quot;theme = 'eureka'&quot; &gt;&gt; hugo.toml
+</code></pre>
+<h3 id="将页面放在github上">将页面放在github上</h3>
+<p>在项目根目录下生成public目录</p>
+<pre><code class="language-shell">hugo --theme=wangchucheng.com/hugo-eureka --baseURL=&quot;https://lisanzhu.github.io&quot; 
+</code></pre>
+<p>切换到public目录下，以此为根目录推到指定仓库中，仓库名需要为 xx(用户名).github.io</p>
+<pre><code class="language-shell">$ cd public
+$ git init
+$ git remote add origin https://github.com/lisanzhu/lisanzhu.github.io.git   
+$ git add -A
+$ git commit -m &quot;first commit&quot;
+$ git push -u origin master
+</code></pre>
+<p>在项目仓库-setting中选择page选项，指定分支生成页面
+<img src="/pic/hugo/deploy_page.png" alt="img.png"></p>
+<p>浏览器里访问：<a href="https://lisanzhu.github.io/index.html">https://lisanzhu.github.io/index.html</a></p>
+<h3 id="其他">其他</h3>
+<p>eureka中使用 toc:true 生成目录</p>
+<p>生成public目录时，记得确认baseURL和网站地址相同，协议使用https</p>
+<h3 id="涉及eureka主题">涉及eureka主题</h3>
+<p>文件头使用 toc:true 创建目录</p>
+<p>手动安装submodule出现部分模块缺失问题，修复方法：<a href="https://www.cnblogs.com/joyingwol/p/eureka-install.html%EF%BC%9B">https://www.cnblogs.com/joyingwol/p/eureka-install.html；</a></p>
+<p>标签使用：可以为文章使用标签进行分类，将相同标签文章展示在某列表页面下面
+<img src="/pic/hugo/tax.png" alt="img.png"></p>
+</article>
+
+
+      
+        <div class="my-4">
+    
+    <a href="https://lisanzhu.github.io/tags/%E5%B7%A5%E5%85%B7/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#工具</a>
+    
+</div>
+      
+
+      
+
+
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+        <span class="text-primary-text block font-bold"
+          >Previous</span
+        >
+        <a href="https://lisanzhu.github.io/posts/leveldb/" class="block">Leveldb</a>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+    </div>
+    
+      <div class="col-span-2">
+        
+        
+          <div
+  class="
+    bg-primary-bg
+   prose sticky top-16 z-10 hidden px-6 py-4 lg:block"
+>
+  <h3>On This Page</h3>
+</div>
+<div
+  class="sticky-toc  hidden px-6 pb-6 lg:block"
+>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#过去如何搭建网站">过去如何搭建网站</a></li>
+    <li><a href="#新型搭建网站方式">新型搭建网站方式</a></li>
+    <li><a href="#样例展示">样例展示</a></li>
+    <li><a href="#详细过程">详细过程</a>
+      <ul>
+        <li><a href="#使用eureka模板快速搭建">使用Eureka模板快速搭建</a></li>
+        <li><a href="#手动安装submodule方式搭建框架">手动安装submodule方式搭建框架</a></li>
+        <li><a href="#将页面放在github上">将页面放在github上</a></li>
+        <li><a href="#其他">其他</a></li>
+        <li><a href="#涉及eureka主题">涉及eureka主题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    enableStickyToc();
+  });
+</script>
+
+        
+      </div>
+    
+
+    
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/" http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" >WANG Chucheng</a> and <a href="https://www.ruiqima.com/" http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">MA Ruiqi</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>
