@@ -6,7 +6,7 @@
     <description>Recent content in 缓存 on Li Donggua&#39;s Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34; http-equiv=&#34;Content-Security-Policy&#34; content=&#34;upgrade-insecure-requests&#34; &gt;WANG Chucheng&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34; http-equiv=&#34;Content-Security-Policy&#34; content=&#34;upgrade-insecure-requests&#34;&gt;MA Ruiqi&lt;/a&gt;
+    <copyright>&amp;copy; 2023 &lt;a href=&#34;https://lisanzhu.github.io/&#34;&gt;Li Donggua&lt;/a&gt;
 </copyright>
     <lastBuildDate>Wed, 13 Sep 2023 20:07:16 +0800</lastBuildDate><atom:link href="https://lisanzhu.github.io/tags/%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -15,15 +15,7 @@
       <pubDate>Wed, 13 Sep 2023 20:07:16 +0800</pubDate>
       
       <guid>https://lisanzhu.github.io/posts/tinylfu/</guid>
-      <description>1.背景： 1.1存在背景 缓存存在原因：程序的执行过程：首先从硬盘执行程序，存放到内存，再给cpu运算与执行。由于内存和硬盘的速度相比cpu速度差距大，每执行一个程序cpu都要等待内存和硬盘，引入缓存技术便是为了解决此矛盾，缓存与cpu速度一致，cpu从缓存读取数据比cpu在内存上读取快得多，从而提升系统性能。
-缓存淘汰策略存在的原因：缓存的关注点之一，是在于如何提升缓存的命中率，而缓存的淘汰策略模型就是为了预测哪些数据以后可能会被访问到，以达到更高的命中率、更好的性能。
-有不同的缓存淘汰策略的原因：由于不同系统的数据访问模式不同，同一种缓存策略很难在不同的数据访问模式下取得满意的性能。如下是几种缓存策略的分类：
-基于访问的时间：此类算法按各缓存项被访问时间来组织缓存队列，决定替换对象。如LRU 基于访问频率：此类算法用缓存项的被访问频率来组织缓存。如LFU、LRU2、2Q、LIRS。 访问时间与频率兼顾：通过兼顾访问时间和频率。使得数据模式在变化时缓存策略仍有较好性能。如FBR、LRUF、ALRFU。多数此类算法具有一个可调或自适应参数，通过该参数的调节使缓存策略在基于访问时间与频率间取得一个平衡。 基于访问模式：某些应用有较明确的数据访问特点，进而产生与其相适应的缓存策略。如专用的VoD系统设计的A&amp;amp;L缓存策略，同时适应随机、顺序两种访问模式的SARC策略。 1.2横向对比 缓存策略中主要有两种：LRU(Least Recently Used)、LFU(Least Frequently Used)，使用LRU或使用LFU就对应的引出了两个问题：
-缓存污染问题：由于偶发性或周期性的冷数据批量查询，热点数据被挤出去，导致缓存命中率下降，影响缓存整体效率。
-访问模式问题：一旦访问模式改变，缓存需要更长时间来适应新的访问模式，导致缓存命中率下降，进而拉低整体效率。
-LRU LFU 实现方式 记录访问顺序，使用时间最远的数据先被移除。 记录访问次数，使用次数最少的数据先被移除。 应用场景 能够迅速反映随时间变化的数据访问模式，在热点数据场景下很适用。 数据访问模式固定时，如：CDN缓存（将大多数用户可能请求的静态文件放入缓存中） 优点 能够解决访问模式问题，优先保证热点数据有效性，常规场景下有着不错的命中率。 能够解决缓存污染问题，当数据访问模式固定时，通过统计访问频次能够带来最佳的缓存命中率。 缺点 存在缓存污染问题，认为最后到来的数据是最可能被访问到的。例：循环访问所有数据(数据量&amp;gt;缓存)，且每次循环只访问一次，命中率降低。 存在访问模式问题，需要频繁更新数据块计数以及排序，代价昂贵。例：过去访问次数多但最近不访问数据 会占用缓存，命中率会降低。 TinyLFU LFU Aging-LFU 实现 见深入TinyLFU原理 根据数据的历史访问频率来淘汰数据，淘汰一定时间内最少使用的数据。 基于LFU，增加一个引用计数，如果当前缓存中的数据“引用计数平均值”&amp;gt;=“引用计数最大平均值”时，则将所有数据的引用计数减少为原来的一半或减去固定的值(老化机制)。 命中率 高；新鲜机制缓解访问模式问题 低；存在访问模式问题 中；降低“访问模式”的问题(缩小为原来的一半)。 复杂度 低；空间复杂度 O(d*m)；Sketch、Doorkeeper消耗空间；时间复杂度：查询频率： O(1)、插入：O(k)，k为哈希函数个数即为d、Reset：均摊为O(k) 中；需要维护一个访问历史队列，每个数据维护引用计数。 高；除维护访问历史队列之外，增加了平均引用次数的判断、处理。 代价 低，空间消耗小，不必统计所有元素出现的确切次数。时间消耗少，通过哈希函数映射位置的值，估计出元素出现的次数。 高，需要记录所有数据的访问记录，需要基于引用计数排序。 高，基于LFU，增加的老化机制。 2.TinyLFU介绍 论文名字：TinyLFU: A Highly Efficient Cache Admission Policy；
-作者：GIL EINZIGER, Nokia Bell Labs ROY FRIEDMAN, Technion BEN MANES, Independent
-2.1 概念： TinyLFU是一种基于LFU，并且专门为了解决 LFU 两个问题(访问模式、计数与排序代价昂贵)而被设计出来的缓存准入策略。TinyLFU让记录尽量保持相对的“新鲜”（Freshness Mechanism）， 降低访问模式变化时对缓存命中率的影响，同时减少对应的空间、时间消耗。TinyLFU被用在开源缓存框架Caffeine中，被称为现代的缓存。</description>
+      <description>1.背景： 1.1存在背景 缓存存在原因：程序的执行过程：首先从硬盘执行程序，存放到内存，再给cpu运算与执行。由于内存和硬盘的速度相比cpu速度差距大，</description>
     </item>
     
   </channel>
