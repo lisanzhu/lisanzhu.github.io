@@ -71,8 +71,8 @@
   integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
 
 
-<link rel="icon" type="image/png" sizes="32x32" href="https://lisanzhu.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://lisanzhu.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://lisanzhu.github.io/images/green_hu0dbbb2a82b488f8bc1d9d00e96d4a886_323975_32x32_fill_q75_box_center.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="https://lisanzhu.github.io/images/green_hu0dbbb2a82b488f8bc1d9d00e96d4a886_323975_180x180_fill_q75_box_center.jpg">
 
 <meta name="description"
   content="从KV应用场景入手，深入leveldb源码，学习KV存储引擎">
@@ -110,7 +110,7 @@
         "name": "Li Hongjin",
         "logo": {
             "@type": "ImageObject",
-            "url": "https://lisanzhu.github.io/images/icon.png"
+            "url": "https://lisanzhu.github.io/images/green.jpg"
         }
         },
     "description": "\u003cp\u003e从KV应用场景入手，深入leveldb源码，学习KV存储引擎\u003c\/p\u003e"
@@ -119,7 +119,7 @@
 <meta property="og:type" content="article" />
 
 
-<meta property="og:image" content="https://lisanzhu.github.io/images/icon.png">
+<meta property="og:image" content="https://lisanzhu.github.io/images/green.jpg">
 
 
 <meta property="og:url" content="https://lisanzhu.github.io/posts/leveldb/" />
@@ -306,7 +306,7 @@
 <li>B+树in-place-update，原地更新，比如插入数据可能导致页分裂。</li>
 <li>B+树16K page存在空间利用率问题，可能有较多空闲块。</li>
 </ol>
-<p><img src="/pic/BTree.png" alt="img.png"></p>
+<p><img src="/pic/leveldb/BTree.png" alt="img.png"></p>
 <p>如何设计更高效的写入数据结构一般都从以下三点来考虑：</p>
 <ol>
 <li>写磁盘优化为写内存</li>
@@ -332,7 +332,7 @@
 <blockquote>
 <p>下图为LSM读写核心流程，将贯穿全文始终，在后续对每个步骤进行拆解</p>
 </blockquote>
-<p><img src="/pic/lsm.png" alt="img_2.png"></p>
+<p><img src="/pic/leveldb/lsm.png" alt="img_2.png"></p>
 <ol>
 <li>Journal(WAL)：Write Ahead Log，日志文件；用于防止因宕机等因素导致Memtable数据丢失。</li>
 <li>Active MemTable：SkipList 实现的内存数据结构，新的数据修改会写入这里；写内存提升写入速度。</li>
@@ -352,11 +352,11 @@
 <p>从存储结构入手，对模块间关联具备整体认知。</p>
 </blockquote>
 <h3 id="journalwal">Journal(WAL)</h3>
-<p><img src="/pic/lsm.png" alt="img_2.png"></p>
+<p><img src="/pic/leveldb/lsm.png" alt="img_2.png"></p>
 <p>Journal介绍：图中红色部分，Write Ahead Log，一种日志文件；在写入Active Memtable前写入Journal进行持久化，用于防止因宕机等因素导致Memtable数据丢失。</p>
 <h4 id="journal结构与写入">Journal结构与写入</h4>
 <p>Journal结构如下：</p>
-<p><img src="/pic/journal.png" alt="img_2.png"></p>
+<p><img src="/pic/leveldb/journal.png" alt="img_2.png"></p>
 <ol>
 <li>Block：为了增加读取效率，日志文件中按照block进行划分，每个block的大小为32KiB。每个block中包含了若干个完整的chunk。
 <ol>
@@ -407,21 +407,21 @@
 <p>Chunk Body为写入Batch编码后的信息，结构如下：分别Batch Header 和 Batch Body</p>
 <p>Batch Header：Sequence Numer(8Bytes) + Batch Length(4Bytes)</p>
 <p>Batch Body：list&lt;ValueType+KeyLength+Key+ValLength+Val&gt;</p>
-<p><img src="/pic/batch_data.png" alt="img_2.png"></p>
+<p><img src="/pic/leveldb/batch_data.png" alt="img_2.png"></p>
 <h3 id="memtable">Memtable</h3>
 <h4 id="skiplist">SkipList</h4>
 <p>跳表：利用概率均衡技术，加快简化读写操作，且保证绝大大多操作均拥有O(log n)的良好效率。</p>
 <p>演变过程如下，单层顺序查找-&gt;多层近二分查找<br>
-<img src="/pic/prove_skip_list.png" alt="img_2.png"></p>
+<img src="/pic/leveldb/prove_skip_list.png" alt="img_2.png"></p>
 <p>查找流程：从头节点开始判断key与当前值和下一个值的大小，决定降低高度查找or本层遍历查找
-<img src="/pic/skip_list_find.png" alt="img_2.png"></p>
+<img src="/pic/leveldb/skip_list_find.png" alt="img_2.png"></p>
 <p>写入流程：类似查找过程</p>
 <ol>
 <li>在查找的过程中，不断记录每一层的前任节点，如图中红色圆圈所表示的；</li>
 <li>为新插入的节点随机产生层高；</li>
 <li>在合适的位置插入新节点（例如图中节点12与节点19之间），并依据查找时记录的前任节点信息，在每一层中，以链表插入的方式，将该节点插入到每一层的链接中。</li>
 </ol>
-<p><img src="/pic/skip_list_insert.png" alt="img_2.png"></p>
+<p><img src="/pic/leveldb/skip_list_insert.png" alt="img_2.png"></p>
 <h4 id="memtable实现">Memtable实现</h4>
 <p>内存中基于跳表实现的数据结构，新的修改会写入active memtable，active memtable 大小达到阈值(默认4MB)之后会rotate成frozen memtable。</p>
 <blockquote>
@@ -431,9 +431,9 @@
 <li>设计跳表的目的是借助概率平衡，来构建一个快速且简单的数据结构，取代平衡树。</li>
 </ol>
 </blockquote>
-<p><img src="/pic/lsm.png" alt="img_2.png"><br>
+<p><img src="/pic/leveldb/lsm.png" alt="img_2.png"><br>
 Memtable中Key是InternalKey，由用户定义的Key+SequenceNumber+KeyType组成，如下图
-<img src="/pic/internal_key.png" alt="img_2.png"><br>
+<img src="/pic/leveldb/internal_key.png" alt="img_2.png"><br>
 Memdb在代码中结构如下：</p>
 <pre><code class="language-go">// DB is an in-memory key/value database.
 type DB struct {
@@ -550,7 +550,7 @@ func (p *DB) Put(key []byte, value []byte) error {
 <p>SST Files: Sorted String Table Files 排序字符串表文件，读取时会在此类文件找对应Key；属于磁盘数据存储文件，一共分为 Level 0 到 Level N 多层，
 每一层包含多个 SST 文件，文件内数据有序，level 0 层内部文件之间可能会有交叉，其他层内部文件之间没有交叉；有序不重叠——提升读取速度，写入后数据不变更——不用加锁。</p>
 <p>SST Files在系统中位置如下红框图：
-<img src="/pic/lsm.png" alt="img_2.png"></p>
+<img src="/pic/leveldb/lsm.png" alt="img_2.png"></p>
 <h4 id="总体结构">总体结构</h4>
 <p>根据功能不同，leveldb在逻辑上将sstable分为：</p>
 <ol>
@@ -763,7 +763,7 @@ func (w *filterWriter) finish() error {
 <h2 id="leveldb核心流程">LevelDB核心流程</h2>
 <h3 id="非事务写入流程">非事务写入流程</h3>
 <p>如图中蓝线部分为写入链路涉及到的环节</p>
-<p><img src="/pic/lsm.png" alt="img_2.png"></p>
+<p><img src="/pic/leveldb/lsm.png" alt="img_2.png"></p>
 <p>与代码相关联的写入流程如下</p>
 <ol>
 <li>拿到写锁，合并channel中写操作</li>
