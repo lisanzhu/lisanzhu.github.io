@@ -1,30 +1,30 @@
 ---
-title: Experience
+title: 个人经历
 draft: false
 experiences:
-  - title: Example Role 1
+  - title: 搬砖狂魔
     organization:
-      name: Example Organization 1
-      url: https://example.org
-    dates: "2019 - Present"
-    location: Country
+      name: 东厂
+      url: https://www.baidu.com
+    dates: "2018 - Present"
+    location: 广东
     writeup: >
-      Donec scelerisque egestas augue at tempor. Fusce faucibus magna in.
+      负责项目搬砖
 
-      - Suspendisse lacinia mauris a laoreet vehicula.
+      - 能够在炎炎夏日搬砖十小时
 
-      - Aenean tincidunt enim vitae ante blandit tempor.
+      - 一天搬砖1吨
 
-      - Nam tincidunt diam quis lorem rutrum ullamcorper.
+      - 喜欢在**晚上**搬砖
 
-  - title: Example Role 2
+  - title: 搬砖小弟
     organization:
-      name: Example Organization 2
-      url: https://example.org
-    dates: "2017 - 2019"
-    location: Country
+      name: 西厂
+      url: https://www.baidu.com
+    dates: "2015 - 2018"
+    location: 东北
     writeup: >
-      **Aliquam** at **rutrum** ante. In sed quam faucibus.
+      能够负责搬砖任务
 
 weight: 3
 widget:

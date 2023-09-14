@@ -9,14 +9,13 @@ theme: wangchucheng.com/hugo-eureka
 
 paginate: 3
 copyright: >
-  &copy; 2021 <a href="https://www.wangchucheng.com/" http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" >WANG Chucheng</a> and <a
-  href="https://www.ruiqima.com/" http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">MA Ruiqi</a>
+  &copy; 2023 <a href="https://lisanzhu.github.io/">Li Donggua</a>
 enableEmoji: true
 enableGitInfo: false
 summaryLength: 75
 
 defaultContentLanguage: en
-hasCJKLanguage: false # Set `true` for Chinese/Japanese/Korean.
+hasCJKLanguage: true # Set `true` for Chinese/Japanese/Korean.
 defaultContentLanguageInSubdir: false
 
 # Uncomment for google analytics
